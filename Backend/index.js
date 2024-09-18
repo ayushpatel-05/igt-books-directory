@@ -2,10 +2,13 @@ const express = require('express');
 const books = require('./routes/book');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const dotenv = require('dotenv');
+
+dotenv.config({path: '.env'})
 
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect("mongodb://localhost:27017", {dbName: 'IGT_Books_Directory'});
+        const conn = await mongoose.connect(process.env.MONGO_URL, {dbName: 'IGT_Books_Directory'});
         console.log(`Mongo db connected: ${conn.connection.host}`);
     } catch (error) {
         console.log(error);

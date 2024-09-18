@@ -8,13 +8,6 @@ export default function BooksSection() {
     <div className="flex-grow mt-10">
       <SearchBar></SearchBar>
       <hr className="mt-5 bg-black"></hr>
-      {/* <BookListItem
-        name="Harry Potter"
-        author="Ayush Patel"
-        publisher="MC Grawl Hills"
-        genre="Fantasy"
-        price={500}
-      ></BookListItem> */}
       {books.map((book) => {
         return (
           <BookListItem
