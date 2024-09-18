@@ -17,7 +17,7 @@ export const fetchBooks = createAsyncThunk(
       params.priceMin = priceRange.min;
       params.priceMax = priceRange.max;
       params.limit = 100;
-      const response = await axios.get('http://localhost:3000/api/v1/books', {
+      const response = await axios.get('https://igt-books-directory-api.vercel.app/api/v1/books', {
         params: params
       });
       return response.data;
@@ -32,7 +32,7 @@ export const fetchCategories = createAsyncThunk(
   'book/fetchCategories',
   async (categoryName, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/books/list/${categoryName}`);
+      const response = await axios.get(`https://igt-books-directory-api.vercel.app/api/v1/books/list/${categoryName}`);
       return {categoryName, data: response.data};
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
