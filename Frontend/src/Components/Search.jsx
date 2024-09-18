@@ -12,7 +12,7 @@ const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(fetchBooks());
+    dispatch(fetchBooks(query));
   };
 
   return (

@@ -8,7 +8,7 @@ axios.defaults.withCredentials = true;
 
 export const fetchBooks = createAsyncThunk(
   'book/fetchBooks',
-  async (_, { rejectWithValue, getState }) => {
+  async (name, { rejectWithValue, getState }) => {
     try {
       let params = {};
       const checked = getState().book.checked;
@@ -16,6 +16,8 @@ export const fetchBooks = createAsyncThunk(
       params = {params, ...checked};
       params.priceMin = priceRange.min;
       params.priceMax = priceRange.max;
+      params.name = name;
+      console.log(name)
       params.limit = 100;
       const response = await axios.get('https://igt-books-directory-api.vercel.app/api/v1/books', {
         params: params
