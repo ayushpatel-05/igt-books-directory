@@ -1,6 +1,7 @@
 const express = require('express');
 const books = require('./routes/book');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const connectDB = async () => {
     try {
@@ -12,9 +13,19 @@ const connectDB = async () => {
     }
 };
 
+
 connectDB();
 const app = express();
 
+app.use(
+    cors({
+      origin: true, //For now
+      methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+      allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
+      credentials: true,
+    })
+  );
+  
 app.use(express.json());
 app.use('/api/v1', books);
 
